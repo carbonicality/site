@@ -91,3 +91,23 @@ body {
     background-color:#4a9eff;
     color:black;
 }
+
+.title {
+    color:white;
+    font-size: 24px;
+    font-weight: normal;
+    margin-top:20px;
+}
+
+.desc {
+    color: white;
+    font-size: 14px;
+    margin-top:20px;
+    max-width:600px;
+}
+
+.desc strong,
+.desc b {
+    font-weight: bold;
+    color: #4a9eff;
+}
