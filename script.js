@@ -100,3 +100,19 @@ window.addEventListener('resize',()=>{
     const newHeight = window.innerHeight;
     d3.select('.topo-bg').attr('viewBox',`0 0 ${newWidth} ${newHeight}`);
 });
+
+async function fetchCommit() {
+    try {
+        const res = await fetch('https://api.github.com/repos/carbonicality/site/commits/main');
+        const data = await res.json();
+        const hash = data.sha.substring(0,7);
+        document.querySelector('.cinfo').innerHTML = `<i data-lucide="github"></i>commit&nbsp;<span class="hash">${hash}</span>`;
+        lucide.createIcons();
+    } catch (err) {
+        console.error('failed to fetch commit :(', err);
+        document.querySelector('.cinfo').textContent = 'commit unavailable';
+    }
+}
+
+lucide.createIcons();
+fetchCommit();

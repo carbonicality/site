@@ -135,4 +135,20 @@ body {
     height: 33px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.cinfo .hash {
+    text-decoration: underline;
+}
+
+.cinfo .hash:hover {
+    background-color: #4a9eff;
+    color: black;
+}
+
+.cinfo svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
 }
