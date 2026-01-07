@@ -114,5 +114,13 @@ async function fetchCommit() {
     }
 }
 
+const bars = document.querySelectorAll('.vis .bar');
+setInterval(() => {
+    bars.forEach(bar => {
+        const randHeight = Math.random()*20 + 4;
+        bar.style.height = randHeight+'px';
+    });
+},150);
+
 lucide.createIcons();
 fetchCommit();
