@@ -292,3 +292,37 @@ body {
     color: #4a9eff;
     font-size: 25px;
 }
+
+@keyframes navIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.carbon.nav-in {
+    animation: navIn 0.3s ease;
+}
+
+.slash.nav-in {
+    animation: navIn 0.3s ease;
+}
+
+@keyframes navOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}
+
+.nav-out {
+    animation: navOut 0.3s ease forwards;
+}

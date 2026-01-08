@@ -122,5 +122,59 @@ setInterval(() => {
     });
 },150);
 
+//nav stuff
+const pathtainer = document.querySelector('.pathtainer');
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.textContent.trim().replace(/\[|\]/g,'').trim();
+        const hasExtra = pathtainer.children.length > 4;
+        if (page === 'home' && hasExtra) {
+            const exSlash = pathtainer.children[4];
+            const exPage = pathtainer.children[5];
+            exSlash.classList.remove('nav-in');
+            exPage.classList.remove('nav-in');
+            exSlash.classList.add('nav-out');
+            exPage.classList.add('nav-out');
+            setTimeout(() =>{
+                pathtainer.innerHTML = '<span class="slash">/</span><span class="home">home</span><span class="slash">/</span><span class="carbon">carbon</span>';
+            },300);
+        } else if (page !=='home') {
+            if (hasExtra) {
+                const exSlash = pathtainer.children[4];
+                const exPage = pathtainer.children[5];
+                exSlash.classList.remove('nav-in');
+                exPage.classList.add('nav-in');
+                exSlash.classList.add('nav-out');
+                exPage.classList.add('nav-out');
+                setTimeout(() => {
+                    pathtainer.innerHTML = '<span class="slash">/</span><span class="home">home</span><span class="slash">/</span><span class="carbon">carbon</span>';
+                    const nSlash = document.createElement('span');
+                    nSlash.className = 'slash nav-in';
+                    nSlash.textContent = '/';
+                    const nPage = document.createElement('span');
+                    nPage.className='carbon nav-in';
+                    nPage.textContent = page;
+                    pathtainer.appendChild(nSlash);
+                    pathtainer.appendChild(nPage);
+                },300);
+            } else {
+                const nSlash = document.createElement('span');
+                nSlash.className = 'slash nav-in';
+                nSlash.textContent = '/';
+                const nPage = document.createElement('span');
+                nPage.className = 'carbon nav-in';
+                nPage.textContent = page;
+                pathtainer.appendChild(nSlash);
+                pathtainer.appendChild(nPage);
+            }
+        } else {
+            pathtainer.innerHTML = '<span class="slash">/</span><span class="home">home</span><span class="slash">/</span><span class="carbon">carbon</span>';
+        }
+    });
+});
+
 lucide.createIcons();
 fetchCommit();
