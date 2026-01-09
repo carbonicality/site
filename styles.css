@@ -50,6 +50,7 @@ body {
     align-items: center;
     padding: 0 12px;
     font-size: 14px;
+    user-select: none;
 }
 
 .links {
@@ -61,6 +62,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding:0 12px;
+    user-select: none;
 }
 
 .nav-link {
@@ -325,4 +327,42 @@ body {
 
 .nav-out {
     animation: navOut 0.3s ease forwards;
+}
+
+.content {
+    animation: cfi 0.4s ease;
+}
+
+@keyframes cfi {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content.fade-out { /* street spirit fade out??*/
+    animation: cfo 0.3s ease forwards;
+}
+
+@keyframes cfo {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.subtitle {
+    color: #4a9eff;
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 16px;
+    margin-bottom: -8px;
 }
