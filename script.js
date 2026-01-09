@@ -231,7 +231,20 @@ const pageCont = {
     about: `
         <h1 class="title">about</h1>
         <h6 class="subtitle">about me</h6>
-        <p class="desc">blah blah placeholder idk</p>`,
+        <p class="desc">
+            hi! i'm <strong>carbon</strong>.<br><br>
+            i'm from the UK, and i'm a student, particularly interested in computer science and mathematics.<br>
+            i'm also a part of <strong>crosbreaker</strong>, a development group centered around chromeOS.<br><br>
+            i'm also interested in webdev!
+            learning new things and applying them is my passion.
+            <br><br>
+            other things i like outside of programming:<br>
+            <ul class="list">
+                <li>music, particularly Radiohead, Tame Impala, Weezer and Linkin Park</li>
+                <li>maths and the sciences</li>
+                <li>hardware projects</li>
+            </ul>
+        </p>`,
     projects: `
         <h1 class="title">projects</h1>
         <h6 class="subtitle">things i've worked on</h6>
