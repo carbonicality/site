@@ -238,19 +238,19 @@ const pageCont = {
         <div class="pgrid">
             <div class="pcard">
                 <div class="pimg">
-                    <!-- add image here -->
+                    <img src="./images/site-bnr.png" alt="site banner">
                 </div>
                 <div class="pcontent">
                     <div class="pheader">
-                        <div class="pname">idk something</div>
+                        <div class="pname">site</div>
                         <div class="plangs">
-                            <span class="plang-tag">FanxScript</span>
-                            <span class="plang-tag">WagonHTML</span>
-                            <span class="plang-tag">LarpCSS</span>
+                            <span class="plang-tag">HTML</span>
+                            <span class="plang-tag">CSS</span>
+                            <span class="plang-tag">JS</span>
                         </div>
                     </div>
-                    <div class="pdesc">brooo lorem ipsum</div>
-                    <a href="https://github.com/carbonicality" class="vs-btn" target="_blank">view source <i data-lucide="arrow-right"></i></a>
+                    <div class="pdesc">a cool portfolio site! (you're on it right now)</div>
+                    <a href="https://github.com/carbonicality/site" class="vs-btn" target="_blank">view source <i data-lucide="arrow-right"></i></a>
                 </div>
             </div>
         </div>`,
