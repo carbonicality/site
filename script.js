@@ -235,7 +235,25 @@ const pageCont = {
     projects: `
         <h1 class="title">projects</h1>
         <h6 class="subtitle">things i've worked on</h6>
-        <p class="desc">blah blah v2 but projects placeholder idk</p>`,
+        <div class="pgrid">
+            <div class="pcard">
+                <div class="pimg">
+                    <!-- add image here -->
+                </div>
+                <div class="pcontent">
+                    <div class="pheader">
+                        <div class="pname">idk something</div>
+                        <div class="plangs">
+                            <span class="plang-tag">FanxScript</span>
+                            <span class="plang-tag">WagonHTML</span>
+                            <span class="plang-tag">LarpCSS</span>
+                        </div>
+                    </div>
+                    <div class="pdesc">brooo lorem ipsum</div>
+                    <a href="https://github.com/carbonicality" class="vs-btn" target="_blank">view source <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>`,
     writeups: `
         <h1 class="title">writeups</h1>
         <h6 class="subtitle">writeups for things i've found</h6>
@@ -251,7 +269,9 @@ function switchContent(page) {
     setTimeout(() => {
         contentCont.innerHTML = pageCont[page];
         contentCont.classList.remove('fade-out');
-        lucide.createIcons();
+        setTimeout(() => {
+            lucide.createIcons();
+        },10);
         if (page === 'home') {
             if (musicInt) {
                 clearInterval(musicInt);
