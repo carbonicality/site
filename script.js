@@ -253,8 +253,25 @@ const pageCont = {
             </div>
             <div class="btns-sec">
                 <div class="btns-tl">cool sites:</div>
-                    <a href="https://bomberfish.ca"><img src="https://bomberfish.ca/button.gif" alt="BomberFish" title="BomberFish" /></a>
-                <div class="btns-gd">
+                    <div class="btns-gd">
+                        <!-- a lot of the images here are from bomberfish, thanks! (check out his website at https://bomberfish.ca)-->
+                        <a href="https://bomberfish.ca"><img src="https://bomberfish.ca/button.gif" alt="BomberFish" title="BomberFish" /></a>
+                        <a href="https://anybrowser.org/campaign"><img src="https://anybrowser.org/campaign/bvgraphics/4noone.gif"></a>
+                        <a href="https://validator.w3.org"><img src="https://anybrowser.org/campaign/images/valid-xhtml10.png"></a>
+                        <a href="https://opencontent.org"><img src="https://anybrowser.org/campaign/images/button_takeone.gif"></a>
+                        <a href="https://anybrowser.org/campaign/"><img src="https://anybrowser.org/campaign/images/button_enhanced.gif"></a>
+                        <a href="https://github.com"><img src="https://bomberfish.ca/buttons/github.gif"></a>
+                        <a href="https://www.java.com/en"><img src="https://bomberfish.ca/buttons/javanow.gif"></a>
+                        <a href="https://thinliquid.dev"><img src="https://thinliquid.dev/buttons/btn.gif"></a>
+                        <a href="https://login.corp.google.com"><img src="https://bomberfish.ca/buttons/balls.gif"></a>
+                        <a href="https://newgrounds.com"><img src="https://bomberfish.ca/buttons/newgrounds.gif"></a>
+                        <a href="https://melankorin.net/"><img src="https://melankorin.net/assets/img/buttons/button-1.gif" alt=""></a>
+                        <a href="https://omada.cafe/"><img src="https://omada.cafe/omada.gif" alt="website button for omada.cafe, a private and secure alternative provider."></a> 
+                        <a href="https://hackclub.com"><img src="https://bomberfish.ca/buttons/hackclub.gif">
+                        <iframe src="https://incr.easrng.net/badge?key=carbon" style="background: url(https://incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0"></iframe>
+                        <img src="https://bomberfish.ca/buttons/nodrugs.gif">
+                        <img src="https://bomberfish.ca/buttons/affection.gif">
+                    </div>
                 </div>
             </div>
         </p>

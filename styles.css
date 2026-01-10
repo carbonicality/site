@@ -597,6 +597,7 @@ body {
     border: 1px solid #4a9eff;
     border-radius:8px;
     padding: 10px;
+    max-width: 600px;
 }
 
 .btns-tl {
@@ -610,6 +611,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap:8px;
+    max-width: 600px;
 }
 
 .btns-gd a {
@@ -620,6 +622,8 @@ body {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    height: 31px;
+    width: 88px;
 }
 
 .carbtn {
@@ -631,4 +635,12 @@ body {
 .btn-txt {
     color: #4a9eff;
     font-size: 12px;
+}
+
+.btns-gd iframe {
+    width: 88px;
+    height: 31px;
+    border: none;
+    display:inline-block;
+    vertical-align: top;
 }
