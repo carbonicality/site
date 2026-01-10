@@ -256,6 +256,7 @@ const pageCont = {
                     <div class="btns-gd">
                         <!-- a lot of the images here are from bomberfish, thanks! (check out his website at https://bomberfish.ca)-->
                         <iframe src="https://incr.easrng.net/badge?key=carbon" style="background: url(https://incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0"></iframe>
+                        <a href="https://crosbreaker.dev"><img src="https://raw.githubusercontent.com/carbonicality/site/refs/heads/main/images/crosbtn.png"></a>
                         <a href="https://bomberfish.ca"><img src="https://bomberfish.ca/button.gif" alt="BomberFish" title="BomberFish" /></a>
                         <a href="https://anybrowser.org/campaign"><img src="https://anybrowser.org/campaign/bvgraphics/4noone.gif"></a>
                         <a href="https://validator.w3.org"><img src="https://anybrowser.org/campaign/images/valid-xhtml10.png"></a>
