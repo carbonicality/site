@@ -644,3 +644,117 @@ body {
     display:inline-block;
     vertical-align: top;
 }
+
+/*mobile styling */
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .container {
+        max-height: none;
+        width:100%;
+        padding: 0 16px;
+    }
+
+    .nav {
+        width: calc(100% - 32px);
+        height: 35px;
+        padding: 0 8px;
+        font-size: 12px;
+    }
+
+    .links {
+        width: calc(100% - 32px);
+        height: 28px;
+        padding: 0px 8px;
+        font-size: 11px;
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        padding: 2px 4px;
+        white-space:nowrap;
+    }
+
+    .cinfo {
+        font-size: 12px;
+    }
+
+    .content {
+        max-height: none;
+        overflow-y: visible;
+        overflow-x: hidden;
+        padding-right: 0;
+        padding-bottom: 60px;
+    }
+
+    .music-plr{
+        width: calc(100% - 32px);
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .album {
+        width: 100px;
+        height: 100px;
+    }
+
+    .track-details {
+        width: 100%;
+    }
+
+    .plr-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .progcont {
+        width: 100%;
+    }
+
+    .vis {
+        justify-content: center;
+    }
+
+    .desc,
+    .pgrid,
+    .btns-sec {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .btns-gd {
+        justify-content: flex-start;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .topo-bg {
+        opacity: 0.08;
+    }
+
+    .cgrid {
+        max-width: 100%;
+    }
+
+    .langs {
+        flex-wrap: wrap;
+    }
+
+    .ctooltip {
+        display:none;
+    }
+}
