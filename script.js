@@ -269,9 +269,11 @@ const pageCont = {
                         <a href="https://newgrounds.com"><img src="https://bomberfish.ca/buttons/newgrounds.gif"></a>
                         <a href="https://melankorin.net/"><img src="https://melankorin.net/assets/img/buttons/button-1.gif" alt=""></a>
                         <a href="https://omada.cafe/"><img src="https://omada.cafe/omada.gif" alt="website button for omada.cafe, a private and secure alternative provider."></a> 
-                        <a href="https://hackclub.com"><img src="https://bomberfish.ca/buttons/hackclub.gif">
+                        <a href="https://hackclub.com"><img src="https://bomberfish.ca/buttons/hackclub.gif"></a>
                         <img src="https://bomberfish.ca/buttons/nodrugs.gif">
                         <img src="https://bomberfish.ca/buttons/affection.gif">
+                        <img src="https://raw.githubusercontent.com/carbonicality/site/refs/heads/main/images/archlinuxbtn.webp">
+                        <img src="https://cyber.dabamos.de/88x31/debian.gif">
                     </div>
                 </div>
             </div>
