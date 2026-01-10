@@ -308,21 +308,21 @@ const pageCont = {
         <h6 class="subtitle">get in touch</h6>
         <p class="desc">feel free to reach out through any of these platforms!</p>
         <div class="cgrid">
-            <div class="citem">
+            <a href="https://discord.com/users/759683999810715648" target="_blank" class="citem" style="text-decoration:none;">
                 <span class="ctooltip">enphosoman</span>
                 <i data-lucide="message-circle"></i>
                 <span class="clabel">Discord</span>
-            </div>
-            <div class="citem">
+            </a>
+            <a href="https://github.com/carbonicality" target="_blank" class="citem" style="text-decoration:none;">
                 <span class="ctooltip">carbonicality</span>
                 <i data-lucide="github"></i>
                 <span class="clabel">GitHub</span>
-            </div>
-            <div class="citem">
+            </a>
+            <a href="mailto:carbonicality@proton.me" class="citem" style="text-decoration:none;">
                 <span class="ctooltip">carbonicality@proton.me</span>
                 <i data-lucide="mail"></i>
                 <span class="clabel">Email</span>
-            </div>
+            </a>
             <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/585982C405B03F6F070EFB9EEA3A559F23ECBB09" target="_blank" class="citem" style="text-decoration: none;">
                 <i data-lucide="key"></i>
                 <span class="clabel">PGP key</span>
