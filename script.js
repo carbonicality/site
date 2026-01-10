@@ -172,6 +172,10 @@ navLinks.forEach(link => {
 //page changing logic
 const contentCont = document.querySelector('.content');
 let musicInt = null;
+let audioEl = null;
+let audioCtx = null;
+let analyser = null;
+let animId = null;
 // this may be inefficient but i dont know any better ways, so here we go
 const pageCont = {
     home: `
@@ -191,8 +195,8 @@ const pageCont = {
             </div>
             <div class="track-details">
                 <div class="track-info">
-                    <div class="track-nm">N/A</div>
-                    <div class="artist-nm">not playing</div>
+                    <div class="track-nm">The Bends</div>
+                    <div class="artist-nm">Radiohead</div>
                 </div>
                 <div class="plr-controls">
                     <button class="play-btn">
@@ -333,6 +337,110 @@ const pageCont = {
         </div>`
 };
 
+function formatTime(seconds) {
+    const mins =Math.floor(seconds/60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2,'0')}`;
+}
+
+function initAudio() {
+    if (!audioEl) {
+        audioEl=new Audio();
+        audioEl.src = './music/thebends.mp3';
+        audioEl.volume = 0.5;
+        audioEl.crossOrigin = "anonymous";
+        audioEl.load();
+    }
+}
+
+function setupAVis() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const src = audioCtx.createMediaElementSource(audioEl);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        src.connect(analyser);
+        analyser.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+}
+
+function updVis() {
+    if (!analyser) return;
+    const bars = document.querySelectorAll('.vis .bar');
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    function animate() {
+        analyser.getByteFrequencyData(dataArray);
+        bars.forEach((bar,i) => {
+            const percent = i/bars.length;
+            const idx = Math.floor(Math.pow(bufferLength,percent));
+            const val = dataArray[Math.min(idx,bufferLength-1)] || 0;
+            const height = (val/255)*20+4;
+            bar.style.height = height+'px';
+        });
+        if (!audioEl.paused) {
+            animId = requestAnimationFrame(animate);
+        }
+    }
+    animate();
+}
+
+function setupMP() {
+    initAudio();
+    const playBtn = document.querySelector('.play-btn');
+    const progFill = document.querySelector('.progfill');
+    const currTime = document.querySelector('.currtime');
+    const totalTime = document.querySelector('.total-time');
+    const progBar = document.querySelector('.progbar');
+    audioEl.addEventListener('loadedmetadata',()=>{
+        totalTime.textContent = formatTime(audioEl.duration);
+    });
+    audioEl.addEventListener('timeupdate', () => {
+        const prog = (audioEl.currentTime / audioEl.duration)*100;
+        progFill.style.width = prog+'%';
+        currTime.textContent = formatTime(audioEl.currentTime);
+    });
+    playBtn.addEventListener('click', ()=>{
+        if (audioEl.paused) {
+            setupAVis();
+            audioEl.play();
+            playBtn.innerHTML = '<i data-lucide="pause" width="16" height="16"></i>';
+            lucide.createIcons();
+            updVis();
+        } else {
+            audioEl.pause();
+            playBtn.innerHTML = '<i data-lucide="play" width="16" height="16"></i>';
+            lucide.createIcons();
+            if (animId) {
+                cancelAnimationFrame(animId);
+            }
+        }
+    });
+    progBar.addEventListener('click', (e) => {
+        const rect = progBar.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        audioEl.currentTime = pos*audioEl.duration;
+    });
+    audioEl.addEventListener('pause', ()=>{
+        const bars=document.querySelectorAll('.vis .bar');
+        bars.forEach(bar => {
+            bar.style.height='4px';
+        });
+    });
+    
+    setupAVis();
+    audioEl.play().then(() => {
+        playBtn.innerHTML = '<i data-lucide="pause" width="16" height="16"></i>';
+        lucide.createIcons();
+        updVis();
+    }).catch(err => {
+        console.log('autoplay blocked :(',err);
+    });
+}
+
 function copyBtnCode() {
     const code = '<a href="#"><img src="https://raw.githubusercontent.com/carbonicality/site/refs/heads/main/images/carbonbtn.png" alt="carbon"></a>';
     navigator.clipboard.writeText(code).then(()=>{
@@ -358,22 +466,15 @@ function switchContent(page) {
             lucide.createIcons();
         },10);
         if (page === 'home') {
-            if (musicInt) {
-                clearInterval(musicInt);
-            }
-            const bars = document.querySelectorAll('.vis .bar');
-            musicInt = setInterval(() => {
-                bars.forEach(bar => {
-                    const randHeight = Math.random() * 20 + 4;
-                    bar.style.height = randHeight + 'px';
-                });
-            }, 150);
-        } else {
-            if (musicInt) {
-                clearInterval(musicInt);
-            }
+            setupMP();
         }
-    }, 300);
+        if (musicInt) {
+            clearInterval(musicInt);
+        }
+        if (animId) {
+            cancelAnimationFrame(animId);
+        }
+    },300);
 }
 
 function truncLinks() {
@@ -392,15 +493,10 @@ function truncLinks() {
     }
 }
 
-const bars = document.querySelectorAll('.vis .bar');
-musicInt = setInterval(() => {
-    bars.forEach(bar => {
-        const randHeight = Math.random() * 20 + 4;
-        bar.style.height = randHeight + 'px';
-    });
-}, 150);
-
 lucide.createIcons();
 truncLinks();
 window.addEventListener('resize',truncLinks);
 fetchCommit();
+setTimeout(() => {
+    setupMP();
+},10);
