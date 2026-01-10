@@ -247,10 +247,8 @@ const pageCont = {
             <div class="btns-sec">
                 <div class="btns-tl">my button:</div>
                 <div class="carbtn">
-                    <a href="#">
-                        <img src="./images/carbonbtn.png" alt="carbon" title="carbonicality"/>
-                    </a>
-                    <span class="btn-txt">click to copy code!</span>
+                    <img src="https://raw.githubusercontent.com/carbonicality/site/refs/heads/main/images/carbonbtn.png" onclick="copyBtnCode()" style="cursor:pointer;" alt="carbon" title="carbon"/>
+                    <span class="btn-txt">click the button to copy code!</span>
                 </div>
             </div>
             <div class="btns-sec">
@@ -314,6 +312,22 @@ const pageCont = {
             </a>
         </div>`
 };
+
+function copyBtnCode() {
+    const code = '<a href="#"><img src="https://raw.githubusercontent.com/carbonicality/site/refs/heads/main/images/carbonbtn.png" alt="carbon"></a>';
+    navigator.clipboard.writeText(code).then(()=>{
+        const btnTxt = document.querySelector('.btn-txt');
+        if (btnTxt) {
+            const ogTxt = btnTxt.textContent;
+            btnTxt.textContent = 'copied!';
+            setTimeout(() => {
+                btnTxt.textContent = ogTxt;
+            },2000);
+        }
+    }).catch(err => {
+        console.error('failed to copy :(',err);
+    });
+}
 
 function switchContent(page) {
     contentCont.classList.add('fade-out');
