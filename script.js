@@ -246,14 +246,16 @@ const pageCont = {
             </ul>
             <div class="btns-sec">
                 <div class="btns-tl">my button:</div>
-                <div class="btns-gd">
+                <div class="carbtn">
                     <a href="#">
                         <img src="./images/carbonbtn.png" alt="carbon" title="carbonicality"/>
                     </a>
+                    <span class="btn-txt">click to copy code!</span>
                 </div>
             </div>
             <div class="btns-sec">
                 <div class="btns-tl">cool sites:</div>
+                    <a href="https://bomberfish.ca"><img src="https://bomberfish.ca/button.gif" alt="BomberFish" title="BomberFish" /></a>
                 <div class="btns-gd">
                 </div>
             </div>

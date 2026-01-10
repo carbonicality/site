@@ -593,6 +593,10 @@ body {
 
 .btns-sec {
     margin-top: 20px;
+    background-color: rgba(74,158,255,0.05);
+    border: 1px solid #4a9eff;
+    border-radius:8px;
+    padding: 10px;
 }
 
 .btns-tl {
@@ -616,4 +620,20 @@ body {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+}
+
+.carbtn {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.btn-txt {
+    color: #4a9eff;
+    font-size: 12px;
+    cursor:pointer;
+}
+
+.btn-txt:hover {
+    text-decoration: underline;
 }
