@@ -121,7 +121,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const page = link.textContent.trim().replace(/\[|\]/g, '').trim();
+        const page = link.getAttribute('data-page');
         switchContent(page);
         const hasExtra = pathtainer.children.length > 4;
         if (page === 'home' && hasExtra) {
@@ -374,6 +374,22 @@ function switchContent(page) {
     }, 300);
 }
 
+function truncLinks() {
+    if (window.innerWidth <= 768) {
+        const links=document.querySelectorAll('.nav-link');
+        const shortNames = ['home', 'abt', 'prjcts', 'wrts', 'contct'];
+        links.forEach((link, i) => {
+            link.textContent = `[ ${shortNames[i]} ]`;
+        });
+    } else {
+        const links = document.querySelectorAll('.nav-link');
+        const fullNames = ['home', 'about', 'projects', 'writeups', 'contact'];
+        links.forEach((link,i) => {
+            link.textContent = `[ ${fullNames[i]} ]`;
+        });
+    }
+}
+
 const bars = document.querySelectorAll('.vis .bar');
 musicInt = setInterval(() => {
     bars.forEach(bar => {
@@ -383,4 +399,6 @@ musicInt = setInterval(() => {
 }, 150);
 
 lucide.createIcons();
+truncLinks();
+window.addEventListener('resize',truncLinks);
 fetchCommit();
