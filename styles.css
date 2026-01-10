@@ -488,3 +488,80 @@ body {
     color: #4a9eff;
     font-size: 16px;
 }
+
+.cgrid {
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 300px;
+}
+
+.citem {
+    position: relative;
+    border: 1px solid #4a9eff;
+    border-radius: 4px;
+    padding:10px 12px;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.citem:hover {
+    background-color: #4a9eff;
+}
+
+.citem svg {
+    width:20px;
+    height:20px;
+    color:#4a9eff;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.citem:hover svg {
+    color: black;
+}
+
+.clabel {
+    color: #4a9eff;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.citem:hover .clabel {
+    color: black;
+}
+
+.ctooltip {
+    position: absolute;
+    left: 100%;
+    top:50%;
+    transform: translateY(-50%);
+    background-color: #4a9eff;
+    color:black;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space:nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition:opacity 0.2s ease;
+    margin-left: 12px;
+}
+
+.ctooltip::before {
+    content: "";
+    position:absolute;
+    right: 100%;
+    left: 50%;
+    transform: translateY(-50%);
+    border:4px solid transparent;
+    border-right-color: #4a9eff;
+}
+
+.citem:hover .ctooltip {
+    opacity: 1;
+}

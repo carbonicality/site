@@ -274,7 +274,29 @@ const pageCont = {
     contact: `
         <h1 class="title">contact</h1>
         <h6 class="subtitle">get in touch</h6>
-        <p class="desc">placeholder</p>`
+        <p class="desc">feel free to reach out through any of these platforms!</p>
+        <div class="cgrid">
+            <div class="citem">
+                <span class="ctooltip">enphosoman</span>
+                <i data-lucide="message-circle"></i>
+                <span class="clabel">Discord</span>
+            </div>
+            <div class="citem">
+                <span class="ctooltip">carbonicality</span>
+                <i data-lucide="github"></i>
+                <span class="clabel">GitHub</span>
+            </div>
+            <div class="citem">
+                <span class="ctooltip">carbonicality@proton.me</span>
+                <i data-lucide="mail"></i>
+                <span class="clabel">Email</span>
+            </div>
+            <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/585982C405B03F6F070EFB9EEA3A559F23ECBB09" target="_blank" class="citem" style="text-decoration: none;">
+                <i data-lucide="key"></i>
+                <span class="clabel">PGP key</span>
+                <span class="ctooltip">585982C405B03F6F070EFB9EEA3A559F23ECBB09</span>
+            </a>
+        </div>`
 };
 
 function switchContent(page) {
