@@ -665,19 +665,19 @@ body {
         width: 100%;
         height: 35px;
         padding: 0 8px;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .links {
         width: 100%;
         height: 28px;
         padding: 0px 8px;
-        font-size: 12px;
+        font-size: 13px;
         gap: 8px;
     }
 
     .nav-link {
-        font-size: 12px;
+        font-size: 13px;
         line-height:1.5;
         padding: 2px 2px;
         white-space:nowrap;
