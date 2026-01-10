@@ -244,7 +244,21 @@ const pageCont = {
                 <li>maths and the sciences</li>
                 <li>hardware projects</li>
             </ul>
-        </p>`,
+            <div class="btns-sec">
+                <div class="btns-tl">my button:</div>
+                <div class="btns-gd">
+                    <a href="#">
+                        <img src="./images/carbonbtn.png" alt="carbon" title="carbonicality"/>
+                    </a>
+                </div>
+            </div>
+            <div class="btns-sec">
+                <div class="btns-tl">cool sites:</div>
+                <div class="btns-gd">
+                </div>
+            </div>
+        </p>
+        `,
     projects: `
         <h1 class="title">projects</h1>
         <h6 class="subtitle">things i've worked on</h6>

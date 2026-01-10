@@ -39,6 +39,7 @@ body {
     flex-direction:column;
     position: relative;
     z-index: 1;
+    max-height: calc(100vh - 80px);
 }
 
 .nav {
@@ -51,6 +52,7 @@ body {
     padding: 0 12px;
     font-size: 14px;
     user-select: none;
+    flex-shrink:0;
 }
 
 .links {
@@ -63,6 +65,7 @@ body {
     justify-content: space-between;
     padding:0 12px;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .nav-link {
@@ -331,6 +334,28 @@ body {
 
 .content {
     animation: cfi 0.4s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+    padding-right: 18px;
+    max-height: calc(100vh - 143px);
+}
+
+.content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #4a9eff;
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #5aaeff;
 }
 
 @keyframes cfi {
@@ -564,4 +589,31 @@ body {
 
 .citem:hover .ctooltip {
     opacity: 1;
+}
+
+.btns-sec {
+    margin-top: 20px;
+}
+
+.btns-tl {
+    color: #4a9eff;
+    font-size:16px;
+    font-weight:normal;
+    margin-bottom: 10px;
+}
+
+.btns-gd {
+    display: flex;
+    flex-wrap: wrap;
+    gap:8px;
+}
+
+.btns-gd a {
+    display:inline-block;
+}
+
+.btns-gd img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
