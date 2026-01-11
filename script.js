@@ -344,6 +344,8 @@ const playlist = [
     {title: 'Faint', artist:'Linkin Park', file:'./music/faint.mp3'}
 ]
 
+let currentTrack = 0;
+
 function formatTime(seconds) {
     const mins =Math.floor(seconds/60);
     const secs = Math.floor(seconds % 60);
