@@ -337,6 +337,13 @@ const pageCont = {
         </div>`
 };
 
+const playlist = [
+    {title: 'The Bends', artist: 'Radiohead', file:'./music/thebends.mp3'},
+    {title: 'Fake Plastic Trees', artist: 'Radiohead', file:'./music/fakeplastictrees.mp3'},
+    {title: "Say It Ain't So", artist:'Weezer',file:'./music/sayitaintso.mp3'},
+    {title: 'Faint', artist:'Linkin Park', file:'./music/faint.mp3'}
+]
+
 function formatTime(seconds) {
     const mins =Math.floor(seconds/60);
     const secs = Math.floor(seconds % 60);
@@ -345,11 +352,24 @@ function formatTime(seconds) {
 
 function initAudio() {
     if (!audioEl) {
-        audioEl=new Audio();
-        audioEl.src = './music/thebends.mp3';
+        audioEl = new Audio();
         audioEl.volume = 0.5;
-        audioEl.crossOrigin = "anonymous";
-        audioEl.load();
+        audioEl.crossOrigin="anonymous";
+    }
+    audioEl.src = playlist[currentTrack].file;
+    audioEl.load();
+}
+
+function playNext() {
+    currentTrack = (currentTrack+1) % playlist.length;
+    audioEl.src = playlist[currentTrack].file;
+    audioEl.load();
+    audioEl.play();
+    const trackName = document.querySelector('.track-nm');
+    const artistName = document.querySelector('.artist-nm');
+    if (trackName && artistName) {
+        trackName.textContent = playlist[currentTrack].title;
+        artistName.textContent = playlist[currentTrack].artist;
     }
 }
 
@@ -438,6 +458,9 @@ function setupMP() {
         updVis();
     }).catch(err => {
         console.log('autoplay blocked :(',err);
+    });
+    audioEl.addEventListener('ended', () => {
+        playNext();
     });
 }
 
