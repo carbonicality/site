@@ -1,6 +1,6 @@
 {
     "name": "carbon-site",
-    "compatibility-date": "2026-01-12",
+    "compatibility_date": "2026-01-12",
     "assets": {
         "directory": "."
     }
