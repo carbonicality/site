@@ -176,6 +176,7 @@ let audioEl = null;
 let audioCtx = null;
 let analyser = null;
 let animId = null;
+let listenersAdded = false;
 // this may be inefficient but i dont know any better ways, so here we go
 const pageCont = {
     home: `
@@ -411,19 +412,52 @@ function updVis() {
 }
 
 function setupMP() {
-    initAudio();
     const playBtn = document.querySelector('.play-btn');
     const progFill = document.querySelector('.progfill');
     const currTime = document.querySelector('.currtime');
     const totalTime = document.querySelector('.total-time');
     const progBar = document.querySelector('.progbar');
-    audioEl.addEventListener('loadedmetadata',()=>{
-        totalTime.textContent = formatTime(audioEl.duration);
-    });
-    audioEl.addEventListener('timeupdate', () => {
-        const prog = (audioEl.currentTime / audioEl.duration)*100;
-        progFill.style.width = prog+'%';
-        currTime.textContent = formatTime(audioEl.currentTime);
+    if (!audioEl) {
+        initAudio();
+    }
+    const trackName = document.querySelector('.track-nm');
+    const artistName = document.querySelector('.artist-nm');
+    if (trackName && artistName) {
+        trackName.textContent=playlist[currentTrack].title;
+        artistName.textContent = playlist[currentTrack].artist;
+    }
+    if (audioEl.duration) {
+        totalTime.textContent=formatTime(audioEl.duration);
+    }
+    if (!listenersAdded) {
+        audioEl.addEventListener('loadedmetadata',()=>{
+            const tt = document.querySelector('.total-time');
+            if (tt) tt.textContent = formatTime(audioEl.duration);
+        });
+        audioEl.addEventListener('timeupdate', () => {
+            const pf = document.querySelector('.progfill');
+            const ct = document.querySelector('.currtime');
+            if (pf && ct && audioEl.duration) {
+                const prog = (audioEl.currentTime / audioEl.duration)*100;
+                pf.style.width=prog+'%';
+                ct.textContent = formatTime(audioEl.currentTime);
+            }
+        });
+        audioEl.addEventListener('pause',()=>{
+            const bars = document.querySelectorAll('.vis .bar');
+            bars.forEach(bar => {
+                bar.style.height='4px';
+            });
+        });
+        audioEl.addEventListener('ended',()=>{
+            playNext();
+        });
+        listenersAdded=true;
+    }
+    progBar.addEventListener('click', (e) => {
+        const rect = progBar.getBoundingClientRect();
+        const pos = (e.clientX-rect.left)/rect.width;
+        audioEl.currentTime = pos*audioEl.duration;
     });
     playBtn.addEventListener('click', ()=>{
         if (audioEl.paused) {
@@ -441,29 +475,17 @@ function setupMP() {
             }
         }
     });
-    progBar.addEventListener('click', (e) => {
-        const rect = progBar.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
-        audioEl.currentTime = pos*audioEl.duration;
-    });
-    audioEl.addEventListener('pause', ()=>{
-        const bars=document.querySelectorAll('.vis .bar');
-        bars.forEach(bar => {
-            bar.style.height='4px';
-        });
-    });
     
-    setupAVis();
-    audioEl.play().then(() => {
-        playBtn.innerHTML = '<i data-lucide="pause" width="16" height="16"></i>';
-        lucide.createIcons();
-        updVis();
-    }).catch(err => {
-        console.log('autoplay blocked :(',err);
-    });
-    audioEl.addEventListener('ended', () => {
-        playNext();
-    });
+    if (!audioEl.currentTime || audioEl.currentTime === 0) {
+        setupAVis();
+        audioEl.play().then(() => {
+            playBtn.innerHTML='<i data-lucide="pause" width="16" height="16"></i>';
+            lucide.createIcons();
+            updVis();
+        }).catch(err => {
+            console.log('autoplay blocked (expected)',err);
+        });
+    }
 }
 
 function copyBtnCode() {
@@ -483,21 +505,41 @@ function copyBtnCode() {
 }
 
 function switchContent(page) {
+    const wasPlaying = audioEl && !audioEl.paused;
+    const sTime =audioEl ? audioEl.currentTime:0;
+    const sTrack = currentTrack;
     contentCont.classList.add('fade-out');
-    setTimeout(() => {
+    setTimeout(()=>{
         contentCont.innerHTML = pageCont[page];
         contentCont.classList.remove('fade-out');
         setTimeout(() => {
             lucide.createIcons();
         },10);
         if (page === 'home') {
-            setupMP();
+            if (audioEl) {
+                currentTrack=sTrack;
+                setupMP();
+                audioEl.currentTime = sTime;
+                if (wasPlaying) {
+                    audioEl.play();
+                    const playBtn=document.querySelector('.play-btn');
+                    if (playBtn) {
+                        playBtn.innerHTML = '<i data-lucide="pause" width="16" height="16"></i>';
+                        lucide.createIcons();
+                    }
+                    updVis();
+                }
+            } else {
+                setupMP();
+            }
+        } else {
+            if (animId) {
+                cancelAnimationFrame(animId);
+                animId = null;
+            }
         }
         if (musicInt) {
             clearInterval(musicInt);
-        }
-        if (animId) {
-            cancelAnimationFrame(animId);
         }
     },300);
 }
